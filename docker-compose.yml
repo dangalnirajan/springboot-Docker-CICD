@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: mariadb_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password123
+      MYSQL_DATABASE: hello
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test1223
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring_boot_app_container
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/hello
+      SPRING_DATASOURCE_USERNAME: test
+      SPRING_DATASOURCE_PASSWORD: test1223
+    ports:
+      - "9191:9191"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./nginx/spring.conf:/etc/nginx/conf.d/spring.conf
+    depends_on:
+      - app
+
+volumes:
+  mariadb_data:
