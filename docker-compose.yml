@@ -11,7 +11,7 @@ services:
       MYSQL_USER: test
       MYSQL_PASSWORD: test1223
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
 
@@ -26,7 +26,7 @@ services:
       SPRING_DATASOURCE_USERNAME: test
       SPRING_DATASOURCE_PASSWORD: test1223
     ports:
-      - "9191:9191"
+      - "9192:9191"
     depends_on:
       - db
 
@@ -34,7 +34,7 @@ services:
     image: nginx:latest
     container_name: nginx_containers
     ports:
-      - "8081:8081"
+      - "8082:8081"
     volumes:
       - ./nginx/spring.conf:/etc/nginx/conf.d/spring.conf
     depends_on:
