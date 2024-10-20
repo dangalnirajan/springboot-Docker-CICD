@@ -38,7 +38,7 @@ services:
       - "8082:8081"
     volumes:
 #      - ./nginx/spring.conf:/etc/nginx/conf.d/spring.conf
-      - /home/jenkins/workspace/spring-automation/nginx/spring.conf:/etc/nginx/conf.d/spring.conf
+      - /home/jenkins/nginx/spring.conf:/etc/nginx/conf.d/spring.conf
 
     depends_on:
       - app
