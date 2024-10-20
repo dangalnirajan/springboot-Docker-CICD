@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: mariadb:latest
+    image: nirajandangal/mariadb:latest
     container_name: mariadb_containers
     restart: always
     environment:
@@ -16,7 +16,7 @@ services:
       - mariadb_data:/var/lib/mysql
 
   app:
-    image: spring_boot_app:latest
+    image: nirajandangal/spring_boot_app:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -32,7 +32,7 @@ services:
       - db
 
   nginx:
-    image: nginx:latest
+    image: nirajandangal/nginx:latest
     container_name: nginx_containers
     ports:
       - "8082:8081"
