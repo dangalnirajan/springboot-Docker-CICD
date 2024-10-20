@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: mariadb:latest
-    container_name: mariadb_container
+    container_name: mariadb_containers
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_password123
@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: spring_boot_app_container
+    container_name: spring_boot_app_containers
     restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/hello
@@ -32,7 +32,7 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: nginx_container
+    container_name: nginx_containers
     ports:
       - "8081:8081"
     volumes:
